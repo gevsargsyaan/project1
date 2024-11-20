@@ -33,7 +33,7 @@ include(CPack)
 set(CPACK_GENERATOR "DEB")  # Указываем генератор для deb-пакетов
 set(CPACK_PACKAGE_NAME "helloworld")  # Имя пакета
 set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})  # Версия пакета
-set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Your Name")  # Ваше имя или email
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "gevsargsyaan")  # Ваше имя или email
 set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Hello World application")  # Описание
 set(CPACK_DEBIAN_PACKAGE_SECTION "utils")  # Секция (категория пакета)
 set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")  # Приоритет пакета

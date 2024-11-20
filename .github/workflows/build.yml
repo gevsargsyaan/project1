@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
   release:
-    types: [created]
+    types:
+      - created
 
 jobs:
   build-and-test:
@@ -39,23 +37,15 @@ jobs:
   release:
     needs: build-and-test
     runs-on: ubuntu-latest
-    if: github.event_name == 'release'
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Set up CMake
-      uses: lukka/get-cmake@v3
-
-    - name: Build project
+    - name: Build and package
       run: |
         cmake -B build -S .
         cmake --build build --config Release
-
-    - name: Package application
-      run: |
-        mkdir -p package
         cpack -B package
 
     - name: Upload release artifact

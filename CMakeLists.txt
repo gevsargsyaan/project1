@@ -17,7 +17,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 enable_testing()
 
 # Подключаем Google Test
-add_subdirectory(third_party/googletest)
+add_subdirectory(third_party/googletest-main)
 
 # Тесты
 add_executable(test_version tests/test_version.cpp src/version.cpp)

@@ -1,0 +1,5 @@
+C:/Users/root/Desktop/UDEMYCOURSE/projects/project1/build/CMakeFiles/helloworld.dir
+C:/Users/root/Desktop/UDEMYCOURSE/projects/project1/build/CMakeFiles/test_version.dir
+C:/Users/root/Desktop/UDEMYCOURSE/projects/project1/build/CMakeFiles/RUN_TESTS.dir
+C:/Users/root/Desktop/UDEMYCOURSE/projects/project1/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/root/Desktop/UDEMYCOURSE/projects/project1/build/CMakeFiles/ZERO_CHECK.dir

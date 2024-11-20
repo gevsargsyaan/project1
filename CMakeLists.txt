@@ -10,25 +10,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Главный исполняемый файл
 add_executable(helloworld src/main.cpp src/version.cpp)
 
-# Указываем путь к собранным библиотекам Google Test
-set(GTEST_ROOT ${CMAKE_SOURCE_DIR}/third_party/googletest-main)
-
-# Добавляем пути к заголовочным файлам
-include_directories(${GTEST_ROOT}/googletest/include)
-
-# Линкуем тесты с собранными библиотеками
-add_executable(test_version tests/test_version.cpp src/version.cpp)
-target_link_libraries(test_version ${GTEST_ROOT}/build/lib/Debug/gtest.lib ${GTEST_ROOT}/build/lib/Debug/gtest_main.lib)
+# Добавляем путь к заголовочным файлам
+include_directories(${CMAKE_SOURCE_DIR}/src)
 
 # Подключаем тестирование
 enable_testing()
+
+# Подключаем Google Test
+add_subdirectory(third_party/googletest)
+
+# Тесты
+add_executable(test_version tests/test_version.cpp src/version.cpp)
+target_link_libraries(test_version gtest gtest_main)
+
+# Регистрируем тесты
 add_test(NAME VersionTest COMMAND test_version)
-
-
-
-# Генерация пакета deb
-set(CPACK_GENERATOR "DEB")
-set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Your Name") # Ваше имя
-set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
-set(CPACK_DEBIAN_PACKAGE_NAME "helloworld")
-include(CPack)

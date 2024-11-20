@@ -25,3 +25,17 @@ target_link_libraries(test_version gtest gtest_main)
 
 # Регистрируем тесты
 add_test(NAME VersionTest COMMAND test_version)
+
+
+# Настройка CPack
+include(CPack)
+
+set(CPACK_GENERATOR "DEB")  # Указываем генератор для deb-пакетов
+set(CPACK_PACKAGE_NAME "helloworld")  # Имя пакета
+set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})  # Версия пакета
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Your Name")  # Ваше имя или email
+set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Hello World application")  # Описание
+set(CPACK_DEBIAN_PACKAGE_SECTION "utils")  # Секция (категория пакета)
+set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")  # Приоритет пакета
+set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")  # Архитектура
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.27)")  # Зависимости

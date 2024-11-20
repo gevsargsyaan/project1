@@ -63,9 +63,10 @@ jobs:
 
     - name: Build and package
       run: |
+        cmake -B build -S.
         cmake --build build --config Release
-        cpack -B package
-
+        cpack -B build
+    
     - name: Upload release artifact
       uses: actions/upload-release-asset@v1.0.2
       with:

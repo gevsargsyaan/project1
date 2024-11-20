@@ -23,3 +23,12 @@ target_link_libraries(test_version ${GTEST_ROOT}/build/lib/Debug/gtest.lib ${GTE
 # Подключаем тестирование
 enable_testing()
 add_test(NAME VersionTest COMMAND test_version)
+
+
+
+# Генерация пакета deb
+set(CPACK_GENERATOR "DEB")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Your Name") # Ваше имя
+set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
+set(CPACK_DEBIAN_PACKAGE_NAME "helloworld")
+include(CPack)

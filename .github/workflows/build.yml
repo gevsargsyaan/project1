@@ -1,0 +1,67 @@
+name: Build, Test, and Release
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  release:
+    types: [created]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up CMake
+      uses: lukka/get-cmake@v3
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake
+
+    - name: Build project
+      run: |
+        cmake -B build -S .
+        cmake --build build
+
+    - name: Run tests
+      run: |
+        cd build
+        ctest --output-on-failure
+
+  release:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up CMake
+      uses: lukka/get-cmake@v3
+
+    - name: Build project
+      run: |
+        cmake -B build -S .
+        cmake --build build --config Release
+
+    - name: Package application
+      run: |
+        mkdir -p package
+        cpack -B package
+
+    - name: Upload release artifact
+      uses: actions/upload-release-asset@v2
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: package/helloworld-*.deb
+        asset_name: helloworld.deb
+        content_type: application/x-debian-package

@@ -1,9 +1,0 @@
-Architecture: 
-Description: HelloWorld built using CMake
-Maintainer: Your Name
-Package: helloworld
-Priority: optional
-Section: devel
-Version: 1.0
-Installed-Size: 0
-
